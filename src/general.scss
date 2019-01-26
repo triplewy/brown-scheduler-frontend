@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css?family=Rubik');
+
+/*============================================================================
+  NORMALILZE
+==============================================================================*/
+*,
+input,
+:before,
+:after {
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	-webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: Rubik, sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+
+  -webkit-transition: all 0.1s;
+  -moz-transition: all 0.1s;
+  -ms-transition: all 0.1s;
+  transition: all 0.1s;
+}
+
+:focus {
+	outline: 0;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  position: relative;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+	text-decoration: none;
+	color: #0969D6;
+	cursor: pointer;
+	border-bottom: 2px solid #FFDC35;
+}
+
+a:hover {
+	text-decoration: none;
+	color: #FFDC35;
+}
+
+@media screen and (max-width: 767px) {
+	*,
+	input,
+	:before,
+	:after {
+		font-size: 14px;
+		line-height: 21px;
+	}
+}
+
+
+
+/*============================================================================
+  MARGINS & LAYOUT
+==============================================================================*/
+.main-content {
+	min-height: 100vh;
+}
+
+/***** desktop *****/
+@media screen and (min-width: 1171px) {
+	.main-container {
+		width: 1008px;
+		margin: 0 auto;
+	}
+	.hw-container {
+		width: 888px;
+		margin: 0 auto;
+	}
+	.main-content{
+		padding-top: 70px;
+		padding-bottom: 220px;
+	}
+}
+
+/***** tablet *****/
+@media screen and (max-width: 1170px) and (min-width: 768px) {
+	.main-container {
+		width: calc(100% - 72px);
+		margin: 0 auto;
+	}
+	.hw-container {
+		width: calc(100% - 72px);
+		margin: 0 auto;
+	}
+	.main-content {
+		padding-top: 60px;
+		padding-bottom: 220px;
+	}
+}
+
+/***** mobile *****/
+@media screen and (max-width: 767px) {
+	.main-container {
+		width: calc(100% - 48px);
+		margin: 0 auto;
+	}
+	.hw-container {
+		width: calc(100% - 48px);
+		margin: 0 auto;
+	}
+	.main-content {
+		padding-top: 60px;
+		padding-bottom: 198px;
+	}
+}

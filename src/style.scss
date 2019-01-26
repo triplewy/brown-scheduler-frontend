@@ -1,0 +1,53 @@
+.main {
+    display: flex;
+
+    .left-side {
+        width: 50vw;
+        height: 100vh;
+        padding: 20px;
+        overflow-y: scroll;
+    }
+    
+    .right-side {
+        width: 50vw;
+        background-color: #3d3d3d;
+        padding: 20px;
+    }
+}
+
+.schedule-view {
+    width: 100%;
+}
+
+.semester-course {
+    border-radius: 2px;
+    padding: 6px;
+    color: white;
+
+    b {
+        margin-right: 3px;
+    }
+
+    p {
+        margin: 0;
+    }
+
+}
+
+.semester {
+    width: 45%;
+
+    h3 {
+        margin-top: 0;
+    }
+
+    .course-list {
+        .semester-course {
+            margin-bottom: 3px;
+
+            .last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+}
