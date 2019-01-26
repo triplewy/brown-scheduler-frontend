@@ -1,0 +1,10 @@
+.AddCourses {
+  margin: 0 auto;
+  display: flex;
+}
+
+.AddCourses input {
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  padding: 5px;
+}
