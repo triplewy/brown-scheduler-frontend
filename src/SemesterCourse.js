@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
 import { Stitch, RemoteMongoClient, AnonymousCredential } from 'mongodb-stitch-browser-sdk'
 
 class SemesterCourse extends Component {
@@ -18,11 +19,11 @@ class SemesterCourse extends Component {
 
   generateSuggestions(e) {
     console.log(this.props.db);
-      this.props.db.collection('courses')
+      this.props.mongodb.collection('courses')
       .find()
       .asArray()
       .then(data => {
-        for (let i in data) {
+        for (let i of data) {
             console.log(i.title);
         }
       });
@@ -37,4 +38,15 @@ class SemesterCourse extends Component {
   }
 }
 
-export default SemesterCourse;
+function mapStateToProps(state) {
+  return {
+    ...state.app
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SemesterCourse);

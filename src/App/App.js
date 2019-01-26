@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { Stitch, RemoteMongoClient, AnonymousCredential } from 'mongodb-stitch-browser-sdk'
-import './App.css';
+import SemesterCourse from '../SemesterCourse'
+import './App.css'
 
 class App extends Component {
   constructor(props) {
@@ -22,7 +23,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-
+      <SemesterCourse />
       </div>
     );
   }
