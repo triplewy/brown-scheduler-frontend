@@ -18,10 +18,9 @@ class SemesterCourse extends Component {
   };
 
   generateSuggestions(e) {
-    console.log(this.props.db);
       this.props.mongodb.collection('courses')
-      .find()
-      .asArray()
+      .find({}, {skip: 0, limit: 5})
+      .toArray()
       .then(data => {
         for (let i of data) {
             console.log(i.title);

@@ -4,7 +4,12 @@ import { getCoursesSuccess } from './App.operations'
 import { Stitch, RemoteMongoClient, AnonymousCredential } from 'mongodb-stitch-browser-sdk'
 import SemesterCourse from '../SemesterCourse'
 import AddCourses from '../AddCourses/AddCourses'
+import ScheduleView from '../ScheduleView'
+import UserInfo from '../UserInfo'
+import RecommendedCourses from '../RecommendedCourses';
 import './App.css'
+import '../general.scss'
+import '../style.scss'
 
 class App extends Component {
   constructor(props) {
@@ -31,9 +36,15 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <SemesterCourse />
-        <AddCourses />
+      <div className="main">
+        <div className="left-side">
+          <ScheduleView />
+        </div>
+        <div className="right-side">
+          <UserInfo />
+          <AddCourses />
+          <RecommendedCourses />
+        </div>
       </div>
     );
   }
