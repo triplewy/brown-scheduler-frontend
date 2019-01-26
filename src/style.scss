@@ -1,0 +1,24 @@
+.semester-course {
+    border-radius: 2px;
+    padding: 6px;
+
+    b {
+        margin-right: 3px;
+    }
+
+    p {
+        margin: 0;
+    }
+}
+
+.semester {
+    .course-list {
+        .semester-course {
+            margin-bottom: 3px;
+
+            .last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+}

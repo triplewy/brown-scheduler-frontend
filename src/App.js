@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { Stitch, RemoteMongoClient, AnonymousCredential } from 'mongodb-stitch-browser-sdk'
 import './App.css';
+import './style.scss';
+import './general.scss';
 
-import SemesterCourse from './SemesterCourse';
+import ScheduleView from './ScheduleView';
 
 class App extends Component {
   constructor(props) {
@@ -23,21 +25,8 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-        <SemesterCourse />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div className="main">
+        <ScheduleView />
       </div>
     );
   }

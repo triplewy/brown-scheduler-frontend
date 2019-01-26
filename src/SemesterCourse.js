@@ -16,6 +16,7 @@ class SemesterCourse extends Component {
   };
 
   generateSuggestions(e) {
+    e.preventDefault();
     console.log("down");
     setTimeout(() => {
         
