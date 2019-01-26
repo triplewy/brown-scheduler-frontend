@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { Stitch, RemoteMongoClient, AnonymousCredential } from 'mongodb-stitch-browser-sdk'
 import './App.css';
 
+import SemesterCourse from './SemesterCourse';
+
 class App extends Component {
   constructor(props) {
     super(props)
     this.appId = 'brown-scheduler-lyrwc'
-
   }
   componentDidMount() {
     this.client = Stitch.initializeAppClient(this.appId)
@@ -24,6 +25,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
+        <SemesterCourse />
           <p>
             Edit <code>src/App.js</code> and save to reload.
           </p>
