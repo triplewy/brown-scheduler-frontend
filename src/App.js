@@ -12,10 +12,15 @@ class App extends Component {
     this.client = Stitch.initializeAppClient(this.appId)
     this.mongodb = this.client.getServiceClient(RemoteMongoClient.factory, 'mongodb-atlas').db('brownDB')
     this.client.auth.loginWithCredential(new AnonymousCredential())
-      // this.mongodb
-      //   .collection('courses')
-      //   .find()
-      //   .asArray())
+    setTimeout(() => { 
+      this.mongodb
+        .collection('courses')
+        .find()
+        .asArray().then(data => {
+          console.log(data);
+          
+        })
+    }, 3000)
 
 
   }
@@ -35,6 +40,7 @@ class App extends Component {
           >
             Learn React
           </a>
+          
         </header>
       </div>
     );
