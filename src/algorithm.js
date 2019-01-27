@@ -29,6 +29,7 @@ export function algorithm(courses, concentrations, year, concentration, pathways
     var side_results = []// for recommendations, basically the second or third or class
     //console.log(concentration)
     var requirements_not_taken = []
+    let untaken_kv = {}
     if (concentration.requirements) {
         // eliminate intro courses if necessary
         var intro = concentration.requirements.intro
@@ -124,6 +125,16 @@ export function algorithm(courses, concentrations, year, concentration, pathways
                     }
                 }
             }
+            let untaken_related = []
+            let related_pathway_classes = conc_pathway.Related
+            console.log(related_pathway_classes)
+            for(var related_p_class of related_pathway_classes){
+                if(!takenCourses.includes(related_p_class)&&!untaken_related.includes(related_p_class)){
+                    untaken_related.push(related_p_class)
+                }
+            }
+            untaken_kv[cur_pathway]= untaken_related
+            
             if(!path_done){
                 requirements_not_taken.push('Pathway '+cur_pathway+ ' not done')
             }
@@ -287,7 +298,8 @@ export function algorithm(courses, concentrations, year, concentration, pathways
       default:
 
     }
-    let finalresult = {'results':buckets, 'recs':side_results, semesters: semesters, 'reqs_not_taken':requirements_not_taken}
+    console.log(untaken_kv)
+    let finalresult = {'results':buckets, 'recs':side_results, semesters: semesters, 'reqs_not_taken':requirements_not_taken,'related_untaken':untaken_kv}
     console.log(finalresult)
     return finalresult;
 }
