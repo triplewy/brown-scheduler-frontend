@@ -41,7 +41,9 @@ export function algorithm(courses, concentrations, year, concentration, pathways
             }
             let i = done.indexOf(Math.min(done));
             for(var c in intro[keys[i]]){
-                results.push(c)
+                if(!takenCourses.includes(c)){
+                    results.push(c)
+                }
             }
         }
         
@@ -104,15 +106,37 @@ export function algorithm(courses, concentrations, year, concentration, pathways
             //check if one from each category
             let intermediate_categories = concentration.requirements["Intermediate Courses"]
             console.log(intermediate_categories)
-            /**
-            for(var taken_index in taken_intermediates){
-                let taken = taken_intermediates[taken_index]
-                
-            }**/
+            for(var cat in intermediate_categories){
+                let cat_list = intermediate_categories[cat]
+                if(cat==="Mathematics"){ //or contains OR, but I haven't seen another one yet
+                    cat_list = []
+                    for(var or_i in cat_list){
+                        let split = cat_list[or_i].split(' or ');
+                        for(var j in split){
+                            cat_list.push(split[j]);
+                        }
+                    }
+                }
+                let taken_cat = false;
+                for(var t_i in taken_intermediates){
+                    let taken_i = taken_intermediates[t_i]
+                    if(cat_list.includes(taken_i)){
+                        taken_cat = true
+                        break
+                    }
+                }
+                if(!taken_cat){
+                    results.concat(cat_list[0])
+                    side_results.concat(cat_list.slice(1))
+                }
+            }
+            
         }
         
         
     }
-    //return 2D array each array denoting semeter
-    return results;
+    //return 2D array each array denoting semester
+    let finalresult = {'results':results, 'recs':side_results}
+    console.log(finalresult)
+    return finalresult;
 }
