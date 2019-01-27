@@ -64,7 +64,7 @@ class UserInfo extends Component {
               <p>{this.props.concentration.title}</p>
             </div>
             :
-            <input type="text" value={this.state.concentrationInput} onChange={this.handleInput}/>
+            <input type="text" value={this.state.concentrationInput} onChange={this.handleInput} placeholder="Type your concentration here..."/>
           }
           {this.state.showSuggestions ?
             <ul>
@@ -79,7 +79,7 @@ class UserInfo extends Component {
         <select>
           <option value='Systems'>Systems</option>
           <option value='Data'>Data</option>
-          <option value='Artifical Intelligence/Machine Learning'>Artifical Intelligence/Machine Learning</option>
+          <option value='Artificial Intelligence/Machine Learning'>Artificial Intelligence/Machine Learning</option>
           <option value='Theory'>Theory</option>
           <option value='Security'>Security</option>
           <option value='Visual Computing'>Visual Computing</option>
@@ -90,7 +90,7 @@ class UserInfo extends Component {
         <select>
           <option value='Systems'>Systems</option>
           <option value='Data'>Data</option>
-          <option value='Artifical Intelligence/Machine Learning'>Artifical Intelligence/Machine Learning</option>
+          <option value='Artificial Intelligence/Machine Learning'>Artificial Intelligence/Machine Learning</option>
           <option value='Theory'>Theory</option>
           <option value='Security'>Security</option>
           <option value='Visual Computing'>Visual Computing</option>
