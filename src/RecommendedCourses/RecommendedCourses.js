@@ -11,7 +11,7 @@ class RecommendedCourses extends Component {
   }
 
   getRecommendations() {
-    const toRemove = this.props.addedCourses.map((d, index) => d ? d.code : null); // replace with list of courses already added
+    const toRemove = this.props.recCourses.concat(this.props.addedCourses).map(d => d ? d.code ? d.code : d : null); // replace with list of courses already added
     return this.props.uniq_courses.filter(function(d) {
       return toRemove.indexOf(d.code) < 0;
     });
