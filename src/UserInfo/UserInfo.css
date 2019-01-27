@@ -3,6 +3,23 @@
   flex-direction: column;
 }
 
+.user-info input {
+  width: 100%;
+  border: none;
+  padding: 5px;
+}
+
+.user-info ul {
+  border-radius: 8px;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: white;
+}
+
+.user-info li {
+  padding: 10px;
+}
+
 .user-info>p {
   margin-top: 20px;
   margin-bottom: 5px;
@@ -13,4 +30,10 @@
   border: none;
   border-radius: 8px;
   padding: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.user-info>button:hover {
+  background-color: #ccc;
 }

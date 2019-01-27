@@ -39,12 +39,12 @@
   color: gray;
 }
 
-.AddCourses div.suggestions {
+.suggestions {
   position: relative;
   display: flex;
 }
 
-.AddCourses div.suggestions ul {
+.suggestions ul {
   position: absolute;
   top: 0;
   left: 0;
@@ -54,6 +54,6 @@
   transition: background-color 0.3s;
 }
 
-.AddCourses div.suggestions li:hover {
+.suggestions li:hover {
   background-color: #ccc;
 } */

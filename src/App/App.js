@@ -21,9 +21,15 @@ class App extends Component {
   }
 
   componentDidMount() {
+    console.log("hi");
     this.props.client.auth.loginWithCredential(new AnonymousCredential())
-    this.getCourses()
-    this.getConcentrations()
+    .then(() => {
+      this.getCourses()
+      this.getConcentrations()
+    })
+    .catch(err => {
+      console.log(err);
+    })
   }
 
   getCourses() {
@@ -47,6 +53,7 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.props.courses);
     return (
       <div className="main">
         <div className="left-side">
