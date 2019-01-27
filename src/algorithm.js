@@ -1,4 +1,4 @@
-export function algorithm(courses, concentrations, year, concentration, pathways, takenCourses) {
+export function algorithm(courses, concentrations, year, concentration, pathways, takenCourses_param) {
     const pathways_mapping = {
         'Systems':0,
         'Data':1,
@@ -9,6 +9,14 @@ export function algorithm(courses, concentrations, year, concentration, pathways
         'Computer Architecture':6,
         'Computational Biology':7,
         'Design':8
+    }
+    let takenCourses = []
+    if(takenCourses_param&& takenCourses_param.length >0){
+        for(var i = 0;i<takenCourses_param.length;i++){
+            if(takenCourses_param[i]){
+                takenCourses.push(takenCourses_param[i].code)
+            }
+        }
     }
     console.log(courses, concentrations, year, concentration, pathways, takenCourses);
     //every course
@@ -27,7 +35,8 @@ export function algorithm(courses, concentrations, year, concentration, pathways
         var intro = concentration.requirements.intro
         console.log(intro)
         var done = []
-        if(!takenCourses){
+        console.log('takenCourses ' +takenCourses[0])
+        if(takenCourses.length==0){
             results.push(concentration.requirements.intro.series1)
         }else{
             var keys = Object.keys(intro);
@@ -39,9 +48,12 @@ export function algorithm(courses, concentrations, year, concentration, pathways
                 } });
                 done.push(taken);
             }
-            let i = done.indexOf(Math.min(done));
-            for(var c in intro[keys[i]]){
+            let i = done.indexOf(Math.max(...done));
+            console.log(i)
+            for(var c of intro[keys[i]]){
+                console.log(c)
                 if(!takenCourses.includes(c)){
+                    
                     results.push(c)
                 }
             }
