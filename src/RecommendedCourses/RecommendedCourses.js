@@ -11,10 +11,7 @@ class RecommendedCourses extends Component {
   }
 
   getCourses() {
-    const data = this.props.courses.filter((datarow, index, self) =>
-    index === self.findIndex((d) => (
-      d.code === datarow.code
-    )));
+    const data = this.props.uniq_courses;
     const columns = [{
       Header: 'Code',
       accessor: 'code'
