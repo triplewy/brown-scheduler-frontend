@@ -19,14 +19,14 @@ export function algorithm(courses, concentrations, year, concentration, pathways
             }
         }
     }
-    console.log(courses, concentrations, year, concentration, pathways, takenCourses);
+    console.log(pathways);
     //every course
     //every concetration
     //year they graduate
     //concentration
     //pathways, array of length 2
     //taken courses
-    
+
     //third stuffs
     var results = []
     var side_results = []// for recommendations, basically the second or third or class
@@ -63,7 +63,7 @@ export function algorithm(courses, concentrations, year, concentration, pathways
                 requirements_not_taken.push("Intro Series")
             }
         }
-        
+
         //pathways check, just suggest all untaken intermediate classes
         let pathways_json = concentration.requirements.pathways
         console.log(pathways_json)
@@ -92,7 +92,7 @@ export function algorithm(courses, concentrations, year, concentration, pathways
             }
             //check intermediates
             let conc_intermediates = conc_pathway.Intermediate
-            
+
             for (var conc_i in conc_intermediates){
                 let intermediate_class = conc_intermediates[conc_i]
                 if(intermediate_class.includes(' or ')){
@@ -127,11 +127,11 @@ export function algorithm(courses, concentrations, year, concentration, pathways
             if(!path_done){
                 requirements_not_taken.push('Pathway '+cur_pathway+ ' not done')
             }
-            
+
         }
         //recommend intermediates and increment taken intermeds
         total_intermediates += taken_intermediates.length
-        
+
         //check if one from each category
         let intermediate_categories = concentration.requirements["Intermediate Courses"]
         console.log(intermediate_categories)
@@ -164,7 +164,7 @@ export function algorithm(courses, concentrations, year, concentration, pathways
             requirements_not_taken.push("Total intermediate <5")
         }
     }
-    
+
     //return 2D array each array denoting semester
     console.log(requirements_not_taken)
     let buckets = {'fall':[],

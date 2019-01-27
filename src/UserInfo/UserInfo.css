@@ -12,7 +12,7 @@
 .user-info ul {
   z-index: 10;
   border-radius: 8px;
-  margin-top: 20px;
+  margin-top: 5px;
   padding: 10px;
   background-color: white;
 }
@@ -28,15 +28,18 @@
 
 .user-info>button {
   margin-top: 20px;
+  margin-bottom: 40px;
   border: none;
   border-radius: 8px;
-  padding: 10px;
+  padding: 12px;
   cursor: pointer;
-  transition: 0.3s;
+  color: rgb(0, 122, 255);
+  font-weight: 600;
+  transition: 0.4s;
 }
 
 .user-info>button:hover {
-  background-color: #ccc;
+  box-shadow: 0 0 0 2px rgb(0, 122, 255);
 }
 
 .user-info>div.pathways {
@@ -64,9 +67,17 @@
   margin-left: 10px;
 }
 
+.user-info div.suggestions input {
+  padding: 12px;
+  border-radius: 8px;
+}
+
 .user-info div.suggestions>div {
   display: flex;
   align-items: center;
+  background-color: white;
+  padding: 8px;
+  border-radius: 8px;
 }
 
 .user-info div.suggestions>div img {
