@@ -49,8 +49,8 @@ class RecommendedCourses extends Component {
         className="-striped -highlight"
         SubComponent={row =>  {
           return (
-          <div>
-            Test.
+          <div className="course-description">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus fringilla lorem odio, quis cursus dolor volutpat sit amet. Sed id quam sit amet dolor varius scelerisque. Vestibulum nec efficitur q
           </div>);
         }}
       />
@@ -60,7 +60,7 @@ class RecommendedCourses extends Component {
   render() {
     return (
       <div className="recommended-courses">
-      <h1>Recommended Courses</h1>
+      <h1>Browse Courses</h1>
       {this.getCourses()}
       </div>
     );
