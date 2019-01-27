@@ -20,22 +20,51 @@
 }
 
 .semester-course {
+    height: 35px;
     border-radius: 2px;
     padding: 6px;
     color: white;
     background-color: #f4f4f4;
+    position: relative;
 
-    // &:focus {
-    //     background-color: black;
+    input {
+        border: none;
+        background-color: #f4f4f4;
+        color: white;
+
+        &::placeholder {
+            color: white;
+        }
+    }
+
+    .suggestions {
+        position: absolute;
+        top: 35px;
+        left: 0;
+        z-index: 10;
+
+        width: 100%;
+        background-color: black;
+        
+        ul {
+            padding: 6px;
+        }
+
+        li {
+            cursor: pointer;
+            border-bottom: 1px solid white;
+            padding: 3px 0;
+
+            &:last-child {
+                border: none;
+            }
+        }
+    }
+
+    // .selected-course p {
+    //     height: 22px;
+    //     overflow-x: scroll;
     // }
-
-    b {
-        margin-right: 3px;
-    }
-
-    p {
-        margin: 0;
-    }
 
 }
 

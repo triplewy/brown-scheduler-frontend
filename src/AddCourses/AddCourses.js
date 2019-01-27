@@ -16,11 +16,24 @@ class AddCourses extends Component {
 
     this.handleInput = this.handleInput.bind(this)
     this.handleClick = this.handleClick.bind(this)
+    this.onClick = this.onClick.bind(this)
     this.filterCourses = this.filterCourses.bind(this)
     this.renderAddedCourses = this.renderAddedCourses.bind(this)
   }
 
-  componentDidMount() {
+  componentWillMount() {
+    document.addEventListener('mousedown', this.onClick, false);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('mousedown', this.onClick, false);
+  }
+
+  onClick(e) {
+    if (this.node.contains(e.target)) {
+      return;
+    }
+    this.setState({ showSuggestions: false })
   }
 
   handleInput(e) {
@@ -39,8 +52,7 @@ class AddCourses extends Component {
     return this.state.filteredCourses.slice(0,5).map((item, index) => {
       return (
         <li key={index} onClick={() => this.handleClick(item)}>
-          <p>{item.code}</p>
-          <p>{item.title}</p>
+          <p><b>{item.code}</b> {item.title}</p>
         </li>
       )
     })
@@ -50,24 +62,24 @@ class AddCourses extends Component {
     return this.props.addedCourses.map((item, index) => {
       return (
         <li key={index}>
-          <p>{item.code}</p>
-          <p>{item.title}</p>
+          <p><b>{item.code}</b> {item.title}</p>
         </li>
       )
     })
   }
 
+  courseColor = {
+    backgroundColor: '#b2b2b2'
+  };
+
   render() {
     return (
-      <div className="AddCourses">
-        <div className='selectedCourse'>
+      <div className="semester-course" style={this.courseColor} ref={node => this.node = node}>
+        <div className='selected-course'>
           {this.state.currentCourse ?
-            <div>
-              <p>{this.state.currentCourse.code}</p>
-              <p>{this.state.currentCourse.title}</p>
-            </div>
+            <p><b>{this.state.currentCourse.code}</b> {this.state.currentCourse.title}</p>
             :
-            <input value={this.state.input} onChange={this.handleInput} placeholder='Type in a course here...'/>
+            <input value={this.state.input} onChange={this.handleInput} placeholder='Type in a course here...' style={this.courseColor}/>
           }
         </div>
         <div className='suggestions'>

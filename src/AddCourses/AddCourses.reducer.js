@@ -7,7 +7,7 @@ const initialState = {
 export default function addCourses(state = initialState, action) {
   switch (action.type) {
     case ADD_COURSE:
-    console.log('action.course', action.course);
+    // console.log('action.course', action.course);
       return {
         addedCourses: [...state.addedCourses, action.course]
       }

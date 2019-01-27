@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Stitch, RemoteMongoClient, AnonymousCredential } from 'mongodb-stitch-browser-sdk'
-import SemesterCourse from '../SemesterCourse/SemesterCourse'
+import AddCourse from './../AddCourses/AddCourses'
 
 class Semester extends Component {
   constructor(props) {
@@ -22,7 +22,7 @@ class Semester extends Component {
       <div className="semester">
         <h3>Semester {this.semesterNum}</h3>
         <div className="course-list">
-            {this.fakeCourses.map((course) => <SemesterCourse />)}
+            {this.fakeCourses.map((course) => <AddCourse />)}
         </div>
       </div>
     );
