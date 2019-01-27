@@ -7,7 +7,7 @@
         padding: 36px;
         overflow-y: scroll;
     }
-    
+
     .right-side {
         width: 50vw;
         background-color: #3d3d3d;
@@ -45,7 +45,7 @@
 
         width: 100%;
         background-color: black;
-        
+
         ul {
             padding: 6px;
         }
@@ -79,7 +79,24 @@
     .course-list {
         .semester-course {
             margin-bottom: 3px;
+            .selected-course>div {
+              display: flex;
+              * {
+                margin: auto 0; 
+              }
+              img {
+                margin-left: auto;
+                width: 25px;
+                height: 25px;
+                cursor: pointer;
+                border-radius: 50%;
+                transition: box-shadow 0.3s;
+              }
 
+              img:hover {
+                box-shadow: 0 0 0 2px black;
+              }
+            }
             .last-child {
                 margin-bottom: 0;
             }
