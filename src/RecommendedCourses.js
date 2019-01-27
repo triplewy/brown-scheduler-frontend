@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
+import ReactTable from 'react-table'
+import 'react-table/react-table.css'
 import { Stitch, RemoteMongoClient, AnonymousCredential } from 'mongodb-stitch-browser-sdk'
 
 class RecommendedCourses extends Component {
@@ -9,26 +11,34 @@ class RecommendedCourses extends Component {
   }
 
 
-  getCourses(e) {
-    this.props.mongodb.collection('courses')
-      .find()
-      .toArray()
-      .then(data => {
-        console.log(data);
-      });
+  getCourses() {
+    const data = this.props.courses;
+    const columns = [{
+      Header: 'Code',
+      accessor: 'code'
+    }, {
+      Header: 'Name',
+      accessor: 'title'
+    }]
+    return (<ReactTable data={data} columns={columns} />)
+  }
+
+  createRow(row) {
+    return {
+      code: row.code,
+      name: row.title
+    }
   }
 
   componentDidMount() {
     // getCourses();
-    console.log(this.props.courses);
   }
 
   render() {
-
     return (
       <div className="recommended-courses">
       <h1>Recommended Courses</h1>
-      <div></div>        
+      {this.getCourses()}     
       </div>
     );
   }

@@ -20,8 +20,13 @@ class App extends Component {
   }
 
   componentDidMount() {
+    console.log("hi");
     this.props.client.auth.loginWithCredential(new AnonymousCredential())
-    this.getCourses()
+    this.getCourses();
+  }
+
+  suggestIntermediate(taken) {   
+    
   }
 
   getCourses() {
@@ -35,6 +40,7 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.props.courses);
     return (
       <div className="main">
         <div className="left-side">
