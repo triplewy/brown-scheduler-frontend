@@ -10,9 +10,8 @@ class RecommendedCourses extends Component {
     this.getCourses = this.getCourses.bind(this);
   }
 
-
   getCourses() {
-    const data = this.props.courses;
+    const data = this.props.uniq_courses;
     const columns = [{
       Header: 'Code',
       accessor: 'code'
@@ -35,7 +34,18 @@ class RecommendedCourses extends Component {
       Header: 'Class Size',
       accessor: 'class_size'
     }]
-    return (<ReactTable data={data} columns={columns} />)
+    return (
+      <ReactTable 
+        data={data} 
+        columns={columns} 
+        defaultPageSize={10}
+        SubComponent={row =>  {
+          console.log("fkdfdfd");
+          console.log(row);
+          return (<div>{row.row.title}</div>);
+        }}
+      />
+    )
   }
 
   componentDidMount() {
