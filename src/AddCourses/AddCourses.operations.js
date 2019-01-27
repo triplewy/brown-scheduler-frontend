@@ -1,4 +1,4 @@
-import { addCourseAction, removeCourseAction, removeRecCoursesAction } from './AddCourses.actions'
+import { addCourseAction, removeCourseAction, removeRecCoursesAction, addPathwayCoursesAction } from './AddCourses.actions'
 
 export function addCourse(index, course) {
   return (dispatch) => {
