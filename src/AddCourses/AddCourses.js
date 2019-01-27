@@ -111,7 +111,7 @@ class AddCourses extends Component {
 function mapStateToProps(state) {
   return {
     ...state.app,
-    ...state.addCourse
+    ...state.addCourses
   }
 }
 
