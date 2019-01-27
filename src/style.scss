@@ -50,20 +50,27 @@
         z-index: 10;
         border-radius: 8px;
         width: 100%;
-        background-color: black;
+        color: rgb(0, 122, 255);
+        background-color: white;
 
         ul {
-            padding: 6px;
+            border: 1px solid #696969;
+            border-radius: 8px;
+            overflow: hidden;
         }
 
         li {
             cursor: pointer;
             border-bottom: 1px solid white;
-            padding: 3px 0;
+            padding: 8px;
 
             &:last-child {
                 border: none;
             }
+        }
+
+        li:hover {
+          background-color: #f1f1f1;
         }
     }
 
@@ -83,7 +90,6 @@
         font-weight: 800;
       }
     }
-
 }
 
 .semester {
