@@ -1,4 +1,4 @@
-import { ADD_COURSE, REMOVE_COURSE, ADD_REC_COURSES } from './AddCourses.actions'
+import { ADD_COURSE, REMOVE_COURSE, ADD_REC_COURSES, REMOVE_REC_COURSES } from './AddCourses.actions'
 
 const initialState = {
   addedCourses: new Array(40),
@@ -21,6 +21,11 @@ export default function addCourses(state = initialState, action) {
       return {
         ...state,
         recCourses: action.courses
+      }
+    case REMOVE_REC_COURSES:
+      return {
+        ...state,
+        recCourses: [...state.recCourses.slice(0, action.index), null, ...state.recCourses.slice(action.index + 1)]
       }
     default:
       return state

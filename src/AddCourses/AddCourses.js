@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { addCourse, removeCourse } from './AddCourses.operations'
+import { addCourse, removeCourse, removeRecCourse } from './AddCourses.operations'
 import closeIcon from '../Icons/close-icon.png'
 import './AddCourses.css'
 
@@ -53,7 +53,11 @@ class AddCourses extends Component {
   }
 
   handleRemove() {
-    this.props.handleRemoveCourse(this.props.index)
+    if (this.props.recCourses[this.props.index]) {
+      this.props.handleRemoveRecCourse(this.props.index)
+    } else {
+      this.props.handleRemoveCourse(this.props.index)
+    }
     this.setState({ currentCourse: null, input: '' })
   }
 
@@ -117,7 +121,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     handleAddCourse: (index, course) => dispatch(addCourse(index, course)),
-    handleRemoveCourse: (index) => dispatch(removeCourse(index))
+    handleRemoveCourse: (index) => dispatch(removeCourse(index)),
+    handleRemoveRecCourse: (index) => dispatch(removeRecCourse(index))
   }
 }
 
