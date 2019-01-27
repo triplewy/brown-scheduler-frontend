@@ -16,6 +16,7 @@ class ScheduleView extends Component {
     return list;
   }
 
+
   render() {
     return (
       <div className="schedule-view">
