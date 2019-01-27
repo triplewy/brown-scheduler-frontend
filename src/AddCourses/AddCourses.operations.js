@@ -1,8 +1,8 @@
 import { addCourseAction, removeCourseAction } from './AddCourses.actions'
 
-export function addCourse(course) {
+export function addCourse(index, course) {
   return (dispatch) => {
-    dispatch(addCourseAction(course))
+    dispatch(addCourseAction(index, course))
   }
 }
 

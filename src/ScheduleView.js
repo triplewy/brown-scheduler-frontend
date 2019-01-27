@@ -11,7 +11,7 @@ class ScheduleView extends Component {
   createSemesterList() {
     let list = [];
     for (let i = 0; i < this.numSemesters; i++) {
-      list.push(<Semester />)
+      list.push(<Semester key={i} index={i} />)
     }
     return list;
   }

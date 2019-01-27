@@ -27,7 +27,7 @@ class UserInfo extends Component {
       concentration.title.toLowerCase().search(e.target.value.toLowerCase()) > -1 ||
       concentration.code.toLowerCase().search(e.target.value.toLowerCase()) > -1
     )
-    this.setState({ filteredConcentrations: filteredConcentrations, concentrationInput: e.target.value, showSuggestions: true })
+    this.setState({ filteredConcentrations: filteredConcentrations, concentrationInput: e.target.value, showSuggestions: e.target.value })
   }
 
   handleClick(item) {
@@ -81,31 +81,36 @@ class UserInfo extends Component {
           }
 
         </div>
-        <p>Pathways</p>
-        <div className='pathways'>
-          <select>
-            <option selected="selected" value='Systems'>Systems</option>
-            <option value='Data'>Data</option>
-            <option value='Artificial Intelligence/Machine Learning'>Artificial Intelligence/Machine Learning</option>
-            <option value='Theory'>Theory</option>
-            <option value='Security'>Security</option>
-            <option value='Visual Computing'>Visual Computing</option>
-            <option value='Computer Architecture'>Computer Architecture</option>
-            <option value='Computational Biology'>Computational Biology</option>
-            <option value='Design'>Design</option>
-          </select>
-          <select>
-            <option value='Systems'>Systems</option>
-            <option selected="selected" value='Data'>Data</option>
-            <option value='Artificial Intelligence/Machine Learning'>Artificial Intelligence/Machine Learning</option>
-            <option value='Theory'>Theory</option>
-            <option value='Security'>Security</option>
-            <option value='Visual Computing'>Visual Computing</option>
-            <option value='Computer Architecture'>Computer Architecture</option>
-            <option value='Computational Biology'>Computational Biology</option>
-            <option value='Design'>Design</option>
-          </select>
-        </div>
+        {this.props.concentration ?
+          <div className='pathways'>
+            <p>Pathways</p>
+            <select>
+              <option selected="selected" value='Systems'>Systems</option>
+              <option value='Data'>Data</option>
+              <option value='Artificial Intelligence/Machine Learning'>Artificial Intelligence/Machine Learning</option>
+              <option value='Theory'>Theory</option>
+              <option value='Security'>Security</option>
+              <option value='Visual Computing'>Visual Computing</option>
+              <option value='Computer Architecture'>Computer Architecture</option>
+              <option value='Computational Biology'>Computational Biology</option>
+              <option value='Design'>Design</option>
+            </select>
+            <select>
+              <option value='Systems'>Systems</option>
+              <option selected="selected" value='Data'>Data</option>
+              <option value='Artificial Intelligence/Machine Learning'>Artificial Intelligence/Machine Learning</option>
+              <option value='Theory'>Theory</option>
+              <option value='Security'>Security</option>
+              <option value='Visual Computing'>Visual Computing</option>
+              <option value='Computer Architecture'>Computer Architecture</option>
+              <option value='Computational Biology'>Computational Biology</option>
+              <option value='Design'>Design</option>
+            </select>
+          </div>
+          :
+          null
+        }
+
 
         <button onClick={() => algorithm(
           this.props.courses,
