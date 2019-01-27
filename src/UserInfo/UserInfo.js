@@ -61,7 +61,9 @@ class UserInfo extends Component {
       this.props.pathways,
       this.props.addedCourses
     )
-    this.props.handleSetRecCourses(recCourses)
+
+    console.log(recCourses);
+    this.props.handleSetRecCourses(recCourses.semesters)
   }
 
 

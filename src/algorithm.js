@@ -10,16 +10,13 @@ export function algorithm(courses, concentrations, year, concentration, pathways
         'Computational Biology':7,
         'Design':8
     }
-    console.log(takenCourses_param)
     let takenCourses = []
-    if(takenCourses_param&& takenCourses_param.length >0){
-        for(var i = 0;i<takenCourses_param.length;i++){
-            if(takenCourses_param[i]){
-                takenCourses.push(takenCourses_param[i].code)
-            }
-        }
+    for(var i = 0; i < takenCourses_param.length; i++){
+      if (takenCourses_param[i]){
+        takenCourses.push(takenCourses_param[i].code)
+      }
     }
-    console.log(pathways);
+
     //every course
     //every concetration
     //year they graduate
@@ -32,37 +29,40 @@ export function algorithm(courses, concentrations, year, concentration, pathways
     var side_results = []// for recommendations, basically the second or third or class
     //console.log(concentration)
     var requirements_not_taken = []
-    if(concentration.requirements){
+    if (concentration.requirements) {
         // eliminate intro courses if necessary
         var intro = concentration.requirements.intro
-        console.log(intro)
         var done = []
-        console.log('takenCourses ' +takenCourses[0])
-        if(takenCourses.length==0){
-            results.push(concentration.requirements.intro.series1)
-        }else{
-            var keys = Object.keys(intro);
-            for(var i=0;i<keys.length;i++){
-                var intro_series = intro[keys[i]];
-                var taken = 0
-                takenCourses.every(function(val) {  if(intro_series.indexOf(val)>=0){
-                    taken+=1
-                } });
-                done.push(taken);
-            }
-            let i = done.indexOf(Math.max(...done));
-            let any_added_intro = false
-            for(var c of intro[keys[i]]){
-                console.log(c)
-                if(!takenCourses.includes(c)){
-                    results.push(c)
-                    any_added_intro = true
-                }
-            }
-            if(!any_added_intro){
-                requirements_not_taken.push("Intro Series")
-            }
+        if (takenCourses.indexOf('CSCI 0170') >= 0 || takenCourses.indexOf('CSCI 0180') >= 0) {
+          results = concentration.requirements.intro.series2.filter(item => takenCourses.indexOf(item) < 0)
+        } else {
+          results = concentration.requirements.intro.series1.filter(item => takenCourses.indexOf(item) < 0)
         }
+        // if (takenCourses.length == 0) {
+        //     results.push(concentration.requirements.intro.series1)
+        // } else {
+        //     var keys = Object.keys(intro);
+        //     for(var i=0;i<keys.length;i++){
+        //         var intro_series = intro[keys[i]];
+        //         var taken = 0
+        //         takenCourses.every(function(val) {  if(intro_series.indexOf(val)>=0){
+        //             taken+=1
+        //         } });
+        //         done.push(taken);
+        //     }
+        //     let i = done.indexOf(Math.max(...done));
+        //     let any_added_intro = false
+        //     for(var c of intro[keys[i]]){
+        //         console.log(c)
+        //         if(!takenCourses.includes(c)){
+        //             results.push(c)
+        //             any_added_intro = true
+        //         }
+        //     }
+        //     if(!any_added_intro){
+        //         requirements_not_taken.push("Intro Series")
+        //     }
+        // }
 
         //pathways check, just suggest all untaken intermediate classes
         let pathways_json = concentration.requirements.pathways
@@ -156,7 +156,7 @@ export function algorithm(courses, concentrations, year, concentration, pathways
             }
             if(!taken_cat){
                 requirements_not_taken.push("Class from intermediate category: "+cat + " not taken")
-                results.concat(cat_list[0])
+                results.push(cat_list[0])
                 side_results.concat(cat_list.slice(1))
             }
         }
@@ -167,7 +167,107 @@ export function algorithm(courses, concentrations, year, concentration, pathways
 
     //return 2D array each array denoting semester
     console.log(requirements_not_taken)
-    let finalresult = {'results':results, 'recs':side_results, 'reqs_not_taken':requirements_not_taken}
+    let buckets = {'intro': results, 'fall':[],
+                   'spring':[]}
+    for(var course_p of courses){
+        if(results.includes(course_p.code)){
+            if(course_p.srcdb=='201810'&&!buckets.fall.includes(course_p.code)){
+                buckets.fall.push(course_p.code)
+            }
+            if(course_p.srcdb=='201820'&&!buckets.spring.includes(course_p.code)){
+                buckets.spring.push(course_p.code)
+            }
+        //there is sumer term where srcdb201800 and maybe winter term
+        }
+    }
+    var semesters = []
+    let semesterIndex = 0
+    let fallIndex = 0
+    let springIndex = 0
+    switch (year) {
+      case '2022':
+        while (fallIndex < buckets.fall.length || springIndex < buckets.spring.length) {
+          if (semesterIndex % 2 == 0) {
+            if (buckets.fall[fallIndex] == 'CSCI 0150' || 'CSCI 0170') {
+              semesters[semesterIndex * 5] = buckets.fall[fallIndex]
+              fallIndex += 1
+            } else {
+              semesters[semesterIndex * 5] = buckets.fall[fallIndex]
+              semesters[semesterIndex * 5 + 1] = buckets.fall[fallIndex + 1]
+              fallIndex += 2
+            }
+          } else {
+            semesters[semesterIndex * 5] = buckets.spring[springIndex]
+            semesters[semesterIndex * 5 + 1] = buckets.spring[springIndex + 1]
+            springIndex += 2
+          }
+          semesterIndex ++
+        }
+        break
+      case '2021':
+        semesterIndex = 2
+        while (fallIndex < buckets.fall.length || springIndex < buckets.spring.length) {
+          if (semesterIndex % 2 == 0) {
+            if (buckets.fall[fallIndex] == 'CSCI 0150' || 'CSCI 0170') {
+              semesters[semesterIndex * 5] = buckets.fall[fallIndex]
+              fallIndex += 1
+            } else {
+              semesters[semesterIndex * 5] = buckets.fall[fallIndex]
+              semesters[semesterIndex * 5 + 1] = buckets.fall[fallIndex + 1]
+              fallIndex += 2
+            }
+          } else {
+            semesters[semesterIndex * 5] = buckets.spring[springIndex]
+            semesters[semesterIndex * 5 + 1] = buckets.spring[springIndex + 1]
+            springIndex += 2
+          }
+          semesterIndex ++
+        }
+        break
+      case '2020':
+        semesterIndex = 4
+        while (fallIndex < buckets.fall.length || springIndex < buckets.spring.length) {
+          if (semesterIndex % 2 == 0) {
+            if (buckets.fall[fallIndex] == 'CSCI 0150' || 'CSCI 0170') {
+              semesters[semesterIndex * 5] = buckets.fall[fallIndex]
+              fallIndex += 1
+            } else {
+              semesters[semesterIndex * 5] = buckets.fall[fallIndex]
+              semesters[semesterIndex * 5 + 1] = buckets.fall[fallIndex + 1]
+              fallIndex += 2
+            }
+          } else {
+            semesters[semesterIndex * 5] = buckets.spring[springIndex]
+            semesters[semesterIndex * 5 + 1] = buckets.spring[springIndex + 1]
+            springIndex += 2
+          }
+          semesterIndex ++
+        }
+        break
+      case '2019':
+        semesterIndex = 6
+        while (fallIndex < buckets.fall.length || springIndex < buckets.spring.length) {
+          if (semesterIndex % 2 == 0) {
+            if (buckets.fall[fallIndex] == 'CSCI 0150' || 'CSCI 0170') {
+              semesters[semesterIndex * 5] = buckets.fall[fallIndex]
+              fallIndex += 1
+            } else {
+              semesters[semesterIndex * 5] = buckets.fall[fallIndex]
+              semesters[semesterIndex * 5 + 1] = buckets.fall[fallIndex + 1]
+              fallIndex += 2
+            }
+          } else {
+            semesters[semesterIndex * 5] = buckets.spring[springIndex]
+            semesters[semesterIndex * 5 + 1] = buckets.spring[springIndex + 1]
+            springIndex += 2
+          }
+          semesterIndex ++
+        }
+        break
+      default:
+
+    }
+    let finalresult = {'results':buckets, 'recs':side_results, semesters: semesters, 'reqs_not_taken':requirements_not_taken}
     console.log(finalresult)
     return finalresult;
 }

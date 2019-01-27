@@ -44,7 +44,7 @@ class AddCourses extends Component {
       course.code.toLowerCase().search(e.target.value.toLowerCase()) > -1) &&
       this.props.addedCourses.indexOf(course) < 0
     )
-    this.setState({ filteredCourses: filteredCourses, input: e.target.value, showSuggestions: e.target.value })
+    this.setState({ filteredCourses: filteredCourses, input: e.target.value, showSuggestions: e.target.value && filteredCourses.length })
   }
 
   handleClick(item) {
@@ -78,27 +78,30 @@ class AddCourses extends Component {
   }
 
   render() {
+    const recCourseCode = this.props.recCourses[this.props.index]
+    const recCourse = recCourseCode ? this.props.courses[this.props.courses.findIndex(p => p.code == recCourseCode)] : null
+    const currentCourse = recCourse ? recCourse : this.state.currentCourse
     return (
-      <div className="semester-course" style={{backgroundColor: this.state.currentCourse ? 'rgb(76, 217, 100)' : '#b2b2b2'}} ref={node => this.node = node}>
+      <div className="semester-course" style={{backgroundColor: recCourse ? 'rgb(255, 45, 85)' : this.state.currentCourse ? 'rgb(76, 217, 100)' : '#b2b2b2'}} ref={node => this.node = node}>
         <div className='selected-course'>
-          {this.state.currentCourse ?
+          {currentCourse ?
             <div>
-              <p><b>{this.state.currentCourse.code}</b> {this.state.currentCourse.title}</p>
+              <p><b>{currentCourse.code}</b> {currentCourse.title}</p>
               <img src={closeIcon} onClick={() => this.handleRemove()} />
             </div>
             :
             <input value={this.state.input} onChange={this.handleInput} placeholder='Type in a course here...' style={this.courseColor}/>
           }
         </div>
-        <div className='suggestions'>
-          {this.state.showSuggestions ?
+        {this.state.showSuggestions ?
+          <div className='suggestions'>
             <ul>
               {this.filterCourses()}
             </ul>
-            :
-            null
-          }
-        </div>
+          </div>
+          :
+          null
+        }
       </div>
     );
   }
