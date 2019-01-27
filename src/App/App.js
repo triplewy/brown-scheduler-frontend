@@ -22,8 +22,13 @@ class App extends Component {
 
   componentDidMount() {
     this.props.client.auth.loginWithCredential(new AnonymousCredential())
-    this.getCourses()
-    this.getConcentrations()
+    .then(() => {
+      this.getCourses()
+      this.getConcentrations()
+    })
+    .catch(err => {
+      console.log(err);
+    })
   }
 
   getCourses() {
