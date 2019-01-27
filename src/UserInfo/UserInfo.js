@@ -130,7 +130,7 @@ class UserInfo extends Component {
         }
 
 
-        <button onClick={this.handleAlgorithm}>Generate Schedule</button>
+        <button onClick={this.handleAlgorithm} disabled={!this.props.concentration}>Generate Schedule</button>
       </div>
     );
   }

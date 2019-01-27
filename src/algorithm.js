@@ -193,10 +193,11 @@ export function algorithm(courses, concentrations, year, concentration, pathways
             }
           }
           if (semesterIndex % 2 == 0) {
-            if (buckets.fall[fallIndex] == 'CSCI 0150' || 'CSCI 0170') {
+            if (buckets.fall[fallIndex] == 'CSCI 0150' || buckets.fall[fallIndex] == 'CSCI 0170') {
               semesters[i] = buckets.fall[fallIndex]
               fallIndex += 1
             } else {
+              i += 10
               semesters[i] = buckets.fall[fallIndex]
               semesters[i + 1] = buckets.fall[fallIndex + 1]
               fallIndex += 2
@@ -218,7 +219,7 @@ export function algorithm(courses, concentrations, year, concentration, pathways
             }
           }
           if (semesterIndex % 2 == 0) {
-            if (buckets.fall[fallIndex] == 'CSCI 0150' || 'CSCI 0170') {
+            if (buckets.fall[fallIndex] == 'CSCI 0150' || buckets.fall[fallIndex] ==  'CSCI 0170') {
               semesters[semesterIndex * 5] = buckets.fall[fallIndex]
               fallIndex += 1
             } else {
@@ -243,7 +244,7 @@ export function algorithm(courses, concentrations, year, concentration, pathways
             }
           }
           if (semesterIndex % 2 == 0) {
-            if (buckets.fall[fallIndex] == 'CSCI 0150' || 'CSCI 0170') {
+            if (buckets.fall[fallIndex] == 'CSCI 0150' || buckets.fall[fallIndex] == 'CSCI 0170') {
               semesters[semesterIndex * 5] = buckets.fall[fallIndex]
               fallIndex += 1
             } else {
@@ -268,7 +269,7 @@ export function algorithm(courses, concentrations, year, concentration, pathways
             }
           }
           if (semesterIndex % 2 == 0) {
-            if (buckets.fall[fallIndex] == 'CSCI 0150' || 'CSCI 0170') {
+            if (buckets.fall[fallIndex] == 'CSCI 0150' || buckets.fall[fallIndex] == 'CSCI 0170') {
               semesters[semesterIndex * 5] = buckets.fall[fallIndex]
               fallIndex += 1
             } else {
