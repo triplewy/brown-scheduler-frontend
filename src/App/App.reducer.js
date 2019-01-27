@@ -7,6 +7,7 @@ const initialState = {
   mongodb: client.getServiceClient(RemoteMongoClient.factory, 'mongodb-atlas').db('brownDB'),
   loading: true,
   courses: [],
+  uniq_courses: [],
   concentrations: [],
   error: '',
 }
@@ -23,6 +24,10 @@ export default function app(state = initialState, action) {
       return {
         ...state,
         courses: action.data,
+        uniq_courses: action.data.filter((datarow, index, self) =>
+        index === self.findIndex((d) => (
+          d.code === datarow.code
+        ))),
         loading: false,
         error: '',
       }

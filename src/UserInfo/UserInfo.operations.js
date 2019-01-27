@@ -1,4 +1,4 @@
-import { setYearAction, setConcentrationAction, setFirstPathwayAction, setSecondPathwayAction } from './UserInfo.actions'
+import { setYearAction, setConcentrationAction, removeConcentrationAction, setFirstPathwayAction, setSecondPathwayAction } from './UserInfo.actions'
 
 export function setYear(year) {
   return (dispatch) => {
@@ -8,6 +8,12 @@ export function setYear(year) {
 export function setConcentration(concentration) {
   return (dispatch) => {
     dispatch(setConcentrationAction(concentration))
+  }
+}
+
+export function removeConcentration() {
+  return (dispatch) => {
+    dispatch(removeConcentrationAction())
   }
 }
 

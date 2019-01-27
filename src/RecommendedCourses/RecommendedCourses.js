@@ -10,9 +10,15 @@ class RecommendedCourses extends Component {
     this.getCourses = this.getCourses.bind(this);
   }
 
+  getRecommendations() {
+    const toRemove = this.props.addedCourses.map(d => d ? d.code : null); // replace with list of courses already added
+    return this.props.uniq_courses.filter(function(d) {
+      return toRemove.indexOf(d.code) < 0;
+    });
+  }
 
   getCourses() {
-    const data = this.props.courses;
+    const data = this.getRecommendations();
     const columns = [{
       Header: 'Code',
       accessor: 'code'
@@ -35,18 +41,23 @@ class RecommendedCourses extends Component {
       Header: 'Class Size',
       accessor: 'class_size'
     }]
-    return (<ReactTable data={data} columns={columns} />)
-  }
-
-  componentDidMount() {
-    // getCourses();
+    return (
+      <ReactTable
+        data={data}
+        columns={columns}
+        defaultPageSize={10}
+        SubComponent={row =>  {
+          return (<div>{row.row.title}</div>);
+        }}
+      />
+    )
   }
 
   render() {
     return (
       <div className="recommended-courses">
       <h1>Recommended Courses</h1>
-      {this.getCourses()}     
+      {this.getCourses()}
       </div>
     );
   }
@@ -54,7 +65,8 @@ class RecommendedCourses extends Component {
 
 function mapStateToProps(state) {
   return {
-    ...state.app
+    ...state.app,
+    ...state.addCourses
   }
 }
 

@@ -1,9 +1,9 @@
-import { SET_YEAR, SET_CONCENTRATION, SET_FIRST_PATHWAY, SET_SECOND_PATHWAY } from './UserInfo.actions'
+import { SET_YEAR, SET_CONCENTRATION, REMOVE_CONCENTRATION, SET_FIRST_PATHWAY, SET_SECOND_PATHWAY } from './UserInfo.actions'
 
 const initialState = {
   year: 2019,
   concentration: null,
-  pathways: ['Systems', 'Systems']
+  pathways: ['Systems', 'Data']
 }
 
 export default function userInfo(state = initialState, action) {
@@ -18,6 +18,11 @@ export default function userInfo(state = initialState, action) {
       return {
         ...state,
         concentration: action.concentration
+      }
+    case REMOVE_CONCENTRATION:
+      return {
+        ...state,
+        concentration: null
       }
     case SET_FIRST_PATHWAY:
       return {
