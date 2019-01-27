@@ -167,7 +167,21 @@ export function algorithm(courses, concentrations, year, concentration, pathways
     
     //return 2D array each array denoting semester
     console.log(requirements_not_taken)
-    let finalresult = {'results':results, 'recs':side_results, 'reqs_not_taken':requirements_not_taken}
+    let buckets = {'fall':[],
+                   'spring':[]}
+    for(var course_p of courses){
+        if(results.includes(course_p.code)){
+            if(course_p.srcdb=='201810'&&!buckets.fall.includes(course_p.code)){
+                buckets.fall.push(course_p.code)                
+            }
+            if(course_p.srcdb=='201820'&&!buckets.spring.includes(course_p.code)){
+                buckets.spring.push(course_p.code)
+            }
+        //there is sumer term where srcdb201800 and maybe winter term
+        }
+    }
+    console.log(buckets)
+    let finalresult = {'results':buckets, 'recs':side_results, 'reqs_not_taken':requirements_not_taken}
     console.log(finalresult)
     return finalresult;
 }
