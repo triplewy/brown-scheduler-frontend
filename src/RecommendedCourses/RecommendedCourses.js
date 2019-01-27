@@ -48,9 +48,10 @@ class RecommendedCourses extends Component {
         defaultPageSize={10}
         className="-striped -highlight"
         SubComponent={row =>  {
+          console.log(row);
           return (
           <div className="course-description">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus fringilla lorem odio, quis cursus dolor volutpat sit amet. Sed id quam sit amet dolor varius scelerisque. Vestibulum nec efficitur q
+            {row.row._original.description}
           </div>);
         }}
       />
