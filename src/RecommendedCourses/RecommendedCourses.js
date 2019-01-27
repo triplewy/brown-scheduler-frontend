@@ -19,15 +19,23 @@ class RecommendedCourses extends Component {
     }, {
       Header: 'Name',
       accessor: 'title'
+    },{
+      Header: 'Course Score',
+      accessor: 'course_rating'
+    },{
+      Header: 'Professor Score',
+      accessor: 'prof_rating'
+    },{
+      Header: 'Avg Hours',
+      accessor: 'avg_hours'
+    },{
+      Header: 'Max Hours',
+      accessor: 'max_hours'
+    }, {
+      Header: 'Class Size',
+      accessor: 'class_size'
     }]
     return (<ReactTable data={data} columns={columns} />)
-  }
-
-  createRow(row) {
-    return {
-      code: row.code,
-      name: row.title
-    }
   }
 
   componentDidMount() {
