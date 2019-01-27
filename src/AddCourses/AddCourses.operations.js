@@ -6,8 +6,8 @@ export function addCourse(index, course) {
   }
 }
 
-export function removeCourse(course) {
+export function removeCourse(index) {
   return (dispatch) => {
-    dispatch(removeCourseAction(course))
+    dispatch(removeCourseAction(index))
   }
 }

@@ -21,7 +21,7 @@
 
 .semester-course {
     display: flex;
-    height: 40px;
+    height: 48px;
     border-radius: 2px;
     padding: 6px;
     color: white;
@@ -88,7 +88,8 @@
             margin-bottom: 3px;
             .selected-course>div {
               margin: auto 0;
-              display: flex;
+              display: grid;
+              grid-template-columns: 90% 10%;
               * {
                 margin: auto 0;
               }

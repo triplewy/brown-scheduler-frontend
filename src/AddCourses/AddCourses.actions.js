@@ -9,9 +9,9 @@ export function addCourseAction(index, course) {
   }
 }
 
-export function removeCourseAction(course) {
+export function removeCourseAction(index) {
   return {
     type: REMOVE_COURSE,
-    course: course
+    index: index
   }
 }

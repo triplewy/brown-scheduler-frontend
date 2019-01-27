@@ -53,7 +53,7 @@ class AddCourses extends Component {
   }
 
   handleRemove() {
-    this.props.handleRemoveCourse(this.state.currentCourse)
+    this.props.handleRemoveCourse(this.props.index)
     this.setState({ currentCourse: null, input: '' })
   }
 
@@ -118,7 +118,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     handleAddCourse: (index, course) => dispatch(addCourse(index, course)),
-    handleRemoveCourse: (course) => dispatch(removeCourse(course))
+    handleRemoveCourse: (index) => dispatch(removeCourse(index))
   }
 }
 
