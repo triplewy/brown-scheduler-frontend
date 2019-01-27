@@ -204,10 +204,11 @@ export function algorithm(courses, concentrations, year, concentration, pathways
             }
           }
           if (semesterIndex % 2 == 0) {
-            if (buckets.fall[fallIndex] == 'CSCI 0150' || 'CSCI 0170') {
+            if (buckets.fall[fallIndex] == 'CSCI 0150' || buckets.fall[fallIndex] == 'CSCI 0170') {
               semesters[i] = buckets.fall[fallIndex]
               fallIndex += 1
             } else {
+              i += 10
               semesters[i] = buckets.fall[fallIndex]
               semesters[i + 1] = buckets.fall[fallIndex + 1]
               fallIndex += 2
@@ -229,17 +230,17 @@ export function algorithm(courses, concentrations, year, concentration, pathways
             }
           }
           if (semesterIndex % 2 == 0) {
-            if (buckets.fall[fallIndex] == 'CSCI 0150' || 'CSCI 0170') {
-              semesters[semesterIndex * 5] = buckets.fall[fallIndex]
+            if (buckets.fall[fallIndex] == 'CSCI 0150' || buckets.fall[fallIndex] ==  'CSCI 0170') {
+              semesters[i] = buckets.fall[fallIndex]
               fallIndex += 1
             } else {
-              semesters[semesterIndex * 5] = buckets.fall[fallIndex]
-              semesters[semesterIndex * 5 + 1] = buckets.fall[fallIndex + 1]
+              semesters[i] = buckets.fall[fallIndex]
+              semesters[i + 1] = buckets.fall[fallIndex + 1]
               fallIndex += 2
             }
           } else {
-            semesters[semesterIndex * 5] = buckets.spring[springIndex]
-            semesters[semesterIndex * 5 + 1] = buckets.spring[springIndex + 1]
+            semesters[i] = buckets.spring[springIndex]
+            semesters[i + 1] = buckets.spring[springIndex + 1]
             springIndex += 2
           }
           semesterIndex ++
@@ -254,17 +255,17 @@ export function algorithm(courses, concentrations, year, concentration, pathways
             }
           }
           if (semesterIndex % 2 == 0) {
-            if (buckets.fall[fallIndex] == 'CSCI 0150' || 'CSCI 0170') {
-              semesters[semesterIndex * 5] = buckets.fall[fallIndex]
+            if (buckets.fall[fallIndex] == 'CSCI 0150' || buckets.fall[fallIndex] == 'CSCI 0170') {
+              semesters[i] = buckets.fall[fallIndex]
               fallIndex += 1
             } else {
-              semesters[semesterIndex * 5] = buckets.fall[fallIndex]
-              semesters[semesterIndex * 5 + 1] = buckets.fall[fallIndex + 1]
+              semesters[i] = buckets.fall[fallIndex]
+              semesters[i + 1] = buckets.fall[fallIndex + 1]
               fallIndex += 2
             }
           } else {
-            semesters[semesterIndex * 5] = buckets.spring[springIndex]
-            semesters[semesterIndex * 5 + 1] = buckets.spring[springIndex + 1]
+            semesters[i] = buckets.spring[springIndex]
+            semesters[i + 1] = buckets.spring[springIndex + 1]
             springIndex += 2
           }
           semesterIndex ++
@@ -279,17 +280,17 @@ export function algorithm(courses, concentrations, year, concentration, pathways
             }
           }
           if (semesterIndex % 2 == 0) {
-            if (buckets.fall[fallIndex] == 'CSCI 0150' || 'CSCI 0170') {
-              semesters[semesterIndex * 5] = buckets.fall[fallIndex]
+            if (buckets.fall[fallIndex] == 'CSCI 0150' || buckets.fall[fallIndex] == 'CSCI 0170') {
+              semesters[i] = buckets.fall[fallIndex]
               fallIndex += 1
             } else {
-              semesters[semesterIndex * 5] = buckets.fall[fallIndex]
-              semesters[semesterIndex * 5 + 1] = buckets.fall[fallIndex + 1]
+              semesters[i] = buckets.fall[fallIndex]
+              semesters[i + 1] = buckets.fall[fallIndex + 1]
               fallIndex += 2
             }
           } else {
-            semesters[semesterIndex * 5] = buckets.spring[springIndex]
-            semesters[semesterIndex * 5 + 1] = buckets.spring[springIndex + 1]
+            semesters[i] = buckets.spring[springIndex]
+            semesters[i + 1] = buckets.spring[springIndex + 1]
             springIndex += 2
           }
           semesterIndex ++
