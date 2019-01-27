@@ -82,7 +82,7 @@ class RecommendedCourses extends Component {
       <div className="recommended-courses">
         <div>
           <h1>Browse Courses</h1>
-          <button onClick={this.filterPathway}>Filter to my pathway</button>
+          <button onClick={this.filterPathway}>{this.state.filter ? 'Remove filter' : 'Filter to my pathway'}</button>
         </div>
         {this.getCourses()}
       </div>

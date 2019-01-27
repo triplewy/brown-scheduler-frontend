@@ -67,6 +67,7 @@ class UserInfo extends Component {
     for (var pathway in recCourses.related_untaken) {
       pathwayCourses = pathwayCourses.concat(recCourses.related_untaken[pathway])
     }
+    const pathwayResult = pathwayCourses.map(item => item && item)
     this.props.handleAddPathwayCourses(pathwayCourses.map(item => {
       return this.props.courses[this.props.courses.findIndex(course => course.code == item)]
     }))
