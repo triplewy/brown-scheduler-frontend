@@ -10,8 +10,15 @@ class RecommendedCourses extends Component {
     this.getCourses = this.getCourses.bind(this);
   }
 
+  getRecommendations() {
+    const toRemove = this.props.addedCourses.map(d => d.code); // replace with list of courses already added
+    return this.props.uniq_courses.filter(function(d) {
+      return toRemove.indexOf(d.code) < 0;
+    });
+  }
+
   getCourses() {
-    const data = this.props.uniq_courses;
+    const data = this.getRecommendations();
     const columns = [{
       Header: 'Code',
       accessor: 'code'
@@ -40,16 +47,10 @@ class RecommendedCourses extends Component {
         columns={columns} 
         defaultPageSize={10}
         SubComponent={row =>  {
-          console.log("fkdfdfd");
-          console.log(row);
           return (<div>{row.row.title}</div>);
         }}
       />
     )
-  }
-
-  componentDidMount() {
-    // getCourses();
   }
 
   render() {
