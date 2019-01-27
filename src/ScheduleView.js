@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Stitch, RemoteMongoClient, AnonymousCredential } from 'mongodb-stitch-browser-sdk'
-import Semester from './Semester.js'
+import Semester from './Semester/Semester'
 
 class ScheduleView extends Component {
   constructor(props) {

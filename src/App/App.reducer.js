@@ -1,5 +1,5 @@
 import { Stitch, RemoteMongoClient, AnonymousCredential } from 'mongodb-stitch-browser-sdk'
-import { GET_COURSES, GET_COURSES_SUCCESS, GET_COURSES_FAILURE } from './App.actions'
+import { GET_COURSES, GET_COURSES_SUCCESS, GET_COURSES_FAILURE, GET_CONCENTRATIONS_SUCCESS } from './App.actions'
 
 const client = Stitch.initializeAppClient('brown-scheduler-lyrwc')
 const initialState = {
@@ -7,6 +7,7 @@ const initialState = {
   mongodb: client.getServiceClient(RemoteMongoClient.factory, 'mongodb-atlas').db('brownDB'),
   loading: true,
   courses: [],
+  concentrations: [],
   error: '',
 }
 
@@ -30,6 +31,11 @@ export default function app(state = initialState, action) {
         ...state,
         loading: false,
         error: action.error
+      }
+    case GET_CONCENTRATIONS_SUCCESS:
+      return {
+        ...state,
+        concentrations: action.data
       }
     default:
       return state
