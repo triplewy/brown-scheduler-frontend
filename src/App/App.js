@@ -50,6 +50,7 @@ class App extends Component {
     return (
       <div className="main">
         <div className="left-side">
+          <h1>Semester View</h1>
           <ScheduleView />
         </div>
         <div className="right-side">

@@ -4,19 +4,19 @@
     .left-side {
         width: 50vw;
         height: 100vh;
-        padding: 20px;
+        padding: 36px;
         overflow-y: scroll;
     }
     
     .right-side {
         width: 50vw;
         background-color: #3d3d3d;
-        padding: 20px;
-    }
-}
+        padding: 36px;
 
-.schedule-view {
-    width: 100%;
+        h1 {
+            color: white;
+        }
+    }
 }
 
 .semester-course {
@@ -35,7 +35,8 @@
 }
 
 .semester {
-    width: 45%;
+    width: 47%;
+    margin-top: 24px;
 
     h3 {
         margin-top: 0;
@@ -50,4 +51,11 @@
             }
         }
     }
+}
+
+.schedule-view {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
