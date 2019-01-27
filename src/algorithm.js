@@ -18,14 +18,14 @@ export function algorithm(courses, concentrations, year, concentration, pathways
             }
         }
     }
-    console.log(courses, concentrations, year, concentration, pathways, takenCourses);
+    console.log(pathways);
     //every course
     //every concetration
     //year they graduate
     //concentration
     //pathways, array of length 2
     //taken courses
-    
+
     //third stuffs
     var results = []
     var side_results = []// for recommendations, basically the second or third or class
@@ -53,12 +53,12 @@ export function algorithm(courses, concentrations, year, concentration, pathways
             for(var c of intro[keys[i]]){
                 console.log(c)
                 if(!takenCourses.includes(c)){
-                    
+
                     results.push(c)
                 }
             }
         }
-        
+
         //pathways check, just suggest all untaken intermediate classes
         let pathways_json = concentration.requirements.pathways
         console.log(pathways_json)
@@ -142,10 +142,10 @@ export function algorithm(courses, concentrations, year, concentration, pathways
                     side_results.concat(cat_list.slice(1))
                 }
             }
-            
+
         }
-        
-        
+
+
     }
     //return 2D array each array denoting semester
     let finalresult = {'results':results, 'recs':side_results}

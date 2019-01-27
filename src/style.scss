@@ -6,33 +6,36 @@
         // height: 100vh;
         padding: 36px;
         // overflow-y: scroll;
+        h1 {
+          color: rgb(0, 122, 255);
+        }
+
+        h3 {
+        }
     }
 
     .right-side {
         width: 50vw;
         background-color: #f1f1f1;
         padding: 36px;
-
-        h1 {
-            color: white;
-        }
     }
 }
 
 .semester-course {
     display: flex;
-    height: 48px;
-    border-radius: 2px;
-    padding: 6px;
+    height: 52px;
+    border-radius: 8px;
+    padding: 8px;
     color: white;
     background-color: #f4f4f4;
     position: relative;
+    transition: background-color 0.3s;
 
     input {
       flex: 1;
         margin: auto 0;
         border: none;
-        background-color: #f4f4f4;
+        background-color: transparent;
         color: white;
 
         &::placeholder {
@@ -42,10 +45,10 @@
 
     .suggestions {
         position: absolute;
-        top: 35px;
+        top: 40px;
         left: 0;
         z-index: 10;
-
+        border-radius: 8px;
         width: 100%;
         background-color: black;
 
@@ -71,21 +74,28 @@
       div {
         flex: 1;
       }
+
+      p {
+        font-weight: 500;
+      }
+
+      b {
+        font-weight: 800;
+      }
     }
 
 }
 
 .semester {
-    width: 47%;
+    width: 48%;
     margin-top: 24px;
-
     h3 {
         margin-top: 0;
     }
 
     .course-list {
         .semester-course {
-            margin-bottom: 3px;
+            margin-bottom: 5px;
             .selected-course>div {
               margin: auto 0;
               display: grid;

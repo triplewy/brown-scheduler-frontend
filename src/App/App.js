@@ -61,6 +61,7 @@ class App extends Component {
           <ScheduleView />
         </div>
         <div className="right-side">
+          <h1>Course Generator</h1>
           <UserInfo />
           <RecommendedCourses />
         </div>

@@ -77,13 +77,9 @@ class AddCourses extends Component {
     })
   }
 
-  courseColor = {
-    backgroundColor: '#b2b2b2'
-  };
-
   render() {
     return (
-      <div className="semester-course" style={this.courseColor} ref={node => this.node = node}>
+      <div className="semester-course" style={{backgroundColor: this.state.currentCourse ? 'rgb(76, 217, 100)' : '#b2b2b2'}} ref={node => this.node = node}>
         <div className='selected-course'>
           {this.state.currentCourse ?
             <div>

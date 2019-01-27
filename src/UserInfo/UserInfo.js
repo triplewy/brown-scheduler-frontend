@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Stitch, RemoteMongoClient, AnonymousCredential } from 'mongodb-stitch-browser-sdk'
 import { connect } from 'react-redux'
-import { setYear, setConcentration, removeConcentration, setFirstPathway, setSecondPathway } from './UserInfo.operations'
+import { setYear, setConcentration, removeConcentration, setFirstPathway, setSecondPathway, setRecCourses } from './UserInfo.operations'
 import { algorithm } from '../algorithm'
 import closeIcon from '../Icons/close-icon.png'
 import './UserInfo.css'
@@ -20,6 +20,7 @@ class UserInfo extends Component {
     this.handleClick = this.handleClick.bind(this)
     this.handleRemove = this.handleRemove.bind(this)
     this.renderSuggestions = this.renderSuggestions.bind(this)
+    this.handleAlgorithm = this.handleAlgorithm.bind(this)
   }
 
   handleInput(e) {
@@ -39,6 +40,7 @@ class UserInfo extends Component {
     this.props.handleRemoveConcentration()
     this.setState({ concentrationInput: '' })
   }
+
   renderSuggestions() {
     return this.state.filteredConcentrations.slice(0,5).map((item, index) => {
       return (
@@ -48,6 +50,18 @@ class UserInfo extends Component {
         </li>
       )
     })
+  }
+
+  handleAlgorithm() {
+    const recCourses = algorithm(
+      this.props.courses,
+      this.props.concentrations,
+      this.props.year,
+      this.props.concentration,
+      this.props.pathways,
+      this.props.addedCourses
+    )
+    this.props.handleSetRecCourses(recCourses)
   }
 
 
@@ -81,11 +95,11 @@ class UserInfo extends Component {
           }
 
         </div>
-        {this.props.concentration ?
+        {this.props.concentration && this.props.concentration.code === 'COMP-SCB' ?
           <div className='pathways'>
             <p>Pathways</p>
             <div>
-              <select>
+              <select onChange={(e) => this.props.handleSetFirstPathway(e.target.value)}>
                 <option value='Systems'>Systems</option>
                 <option value='Data'>Data</option>
                 <option value='Artificial Intelligence/Machine Learning'>Artificial Intelligence/Machine Learning</option>
@@ -96,7 +110,7 @@ class UserInfo extends Component {
                 <option value='Computational Biology'>Computational Biology</option>
                 <option value='Design'>Design</option>
               </select>
-              <select defaultValue='Data'>
+              <select defaultValue='Data' onChange={(e) => this.props.handleSetSecondPathway(e.target.value)}>
                 <option value='Systems'>Systems</option>
                 <option value='Data'>Data</option>
                 <option value='Artificial Intelligence/Machine Learning'>Artificial Intelligence/Machine Learning</option>
@@ -114,14 +128,7 @@ class UserInfo extends Component {
         }
 
 
-        <button onClick={() => algorithm(
-          this.props.courses,
-          this.props.concentrations,
-          this.props.year,
-          this.props.concentration,
-          this.props.pathways,
-          this.props.addedCourses
-        )}>Generate Schedule</button>
+        <button onClick={this.handleAlgorithm}>Generate Schedule</button>
       </div>
     );
   }
@@ -141,7 +148,8 @@ function mapDispatchToProps(dispatch) {
     handleSetConcentration: (concentration) => dispatch(setConcentration(concentration)),
     handleRemoveConcentration: () => dispatch(removeConcentration()),
     handleSetFirstPathway: (pathway) => dispatch(setFirstPathway(pathway)),
-    handleSetSecondPathway: (pathway) => dispatch(setSecondPathway(pathway))
+    handleSetSecondPathway: (pathway) => dispatch(setSecondPathway(pathway)),
+    handleSetRecCourses: (courses) => dispatch(setRecCourses(courses))
   }
 }
 
