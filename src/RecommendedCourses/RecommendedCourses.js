@@ -10,9 +10,11 @@ class RecommendedCourses extends Component {
     this.getCourses = this.getCourses.bind(this);
   }
 
-
   getCourses() {
-    const data = this.props.courses;
+    const data = this.props.courses.filter((datarow, index, self) =>
+    index === self.findIndex((d) => (
+      d.code === datarow.code
+    )));
     const columns = [{
       Header: 'Code',
       accessor: 'code'
@@ -35,7 +37,18 @@ class RecommendedCourses extends Component {
       Header: 'Class Size',
       accessor: 'class_size'
     }]
-    return (<ReactTable data={data} columns={columns} />)
+    return (
+      <ReactTable 
+        data={data} 
+        columns={columns} 
+        defaultPageSize={10}
+        SubComponent={row =>  {
+          console.log("fkdfdfd");
+          console.log(row);
+          return (<div>{row.row.title}</div>);
+        }}
+      />
+    )
   }
 
   componentDidMount() {
