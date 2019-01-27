@@ -1,5 +1,6 @@
 export const SET_YEAR = 'SET_YEAR'
 export const SET_CONCENTRATION = 'SET_CONCENTRATION'
+export const REMOVE_CONCENTRATION = 'REMOVE_CONCENTRATION'
 export const SET_FIRST_PATHWAY = 'SET_FIRST_PATHWAY'
 export const SET_SECOND_PATHWAY = 'SET_SECOND_PATHWAY'
 
@@ -14,6 +15,12 @@ export function setConcentrationAction(concentration) {
   return {
     type: SET_CONCENTRATION,
     concentration: concentration
+  }
+}
+
+export function removeConcentrationAction() {
+  return {
+    type: REMOVE_CONCENTRATION,
   }
 }
 

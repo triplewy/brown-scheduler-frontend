@@ -40,13 +40,15 @@ class AddCourses extends Component {
 
   handleInput(e) {
     const filteredCourses = this.props.uniq_courses.filter(course =>
-      course.title.toLowerCase().search(e.target.value.toLowerCase()) > -1 || course.code.toLowerCase().search(e.target.value.toLowerCase()) > -1
+      (course.title.toLowerCase().search(e.target.value.toLowerCase()) > -1 ||
+      course.code.toLowerCase().search(e.target.value.toLowerCase()) > -1) &&
+      this.props.addedCourses.indexOf(course) < 0
     )
     this.setState({ filteredCourses: filteredCourses, input: e.target.value, showSuggestions: e.target.value })
   }
 
   handleClick(item) {
-    this.props.handleAddCourse(item)
+    this.props.handleAddCourse(this.props.index, item)
     this.setState({ currentCourse: item, showSuggestions: false })
   }
 
@@ -115,7 +117,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    handleAddCourse: (course) => dispatch(addCourse(course)),
+    handleAddCourse: (index, course) => dispatch(addCourse(index, course)),
     handleRemoveCourse: (course) => dispatch(removeCourse(course))
   }
 }

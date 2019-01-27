@@ -38,3 +38,51 @@
 .user-info>button:hover {
   background-color: #ccc;
 }
+
+.user-info>div.pathways {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.user-info>div.pathways>p {
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+
+.user-info>div.pathways>select:first-child {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.user-info>div.pathways>select:last-child {
+  flex: 1;
+  margin-left: 10px;
+}
+
+.user-info div.suggestions>div {
+  display: flex;
+  align-items: center;
+}
+
+.user-info div.suggestions>div img {
+  width: 30px;
+  height: 30px;
+  margin-left: auto;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: box-shadow 0.3s;
+}
+
+.user-info div.suggestions>div img:hover {
+  box-shadow: 0 0 0 2px black;
+}
+
+.user-info div.suggestions li {
+  transition: background-color 0.3s;
+  cursor: pointer;
+}
+
+.user-info div.suggestions li:hover {
+  background-color: #ccc;
+}

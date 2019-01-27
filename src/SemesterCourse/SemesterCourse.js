@@ -9,8 +9,6 @@ class SemesterCourse extends Component {
     this.state = {
         active: false
     }
-    this.courseName = "Creating Modern Web Apps";
-    this.courseId = "CSCI1320";
   }
 
   courseColor = {

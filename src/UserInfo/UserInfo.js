@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Stitch, RemoteMongoClient, AnonymousCredential } from 'mongodb-stitch-browser-sdk'
 import { connect } from 'react-redux'
-import { setYear, setConcentration, setFirstPathway, setSecondPathway } from './UserInfo.operations'
+import { setYear, setConcentration, removeConcentration, setFirstPathway, setSecondPathway } from './UserInfo.operations'
 import { algorithm } from '../algorithm'
+import closeIcon from '../Icons/close-icon.png'
 import './UserInfo.css'
 
 class UserInfo extends Component {
@@ -17,6 +18,7 @@ class UserInfo extends Component {
 
     this.handleInput = this.handleInput.bind(this)
     this.handleClick = this.handleClick.bind(this)
+    this.handleRemove = this.handleRemove.bind(this)
     this.renderSuggestions = this.renderSuggestions.bind(this)
   }
 
@@ -25,7 +27,7 @@ class UserInfo extends Component {
       concentration.title.toLowerCase().search(e.target.value.toLowerCase()) > -1 ||
       concentration.code.toLowerCase().search(e.target.value.toLowerCase()) > -1
     )
-    this.setState({ filteredConcentrations: filteredConcentrations, concentrationInput: e.target.value, showSuggestions: true })
+    this.setState({ filteredConcentrations: filteredConcentrations, concentrationInput: e.target.value, showSuggestions: e.target.value })
   }
 
   handleClick(item) {
@@ -33,6 +35,10 @@ class UserInfo extends Component {
     this.setState({ showSuggestions: false })
   }
 
+  handleRemove() {
+    this.props.handleRemoveConcentration()
+    this.setState({ concentrationInput: '' })
+  }
   renderSuggestions() {
     return this.state.filteredConcentrations.slice(0,5).map((item, index) => {
       return (
@@ -60,8 +66,8 @@ class UserInfo extends Component {
         <div className='suggestions'>
           {this.props.concentration ?
             <div>
-              <p>{this.props.concentration.code}</p>
-              <p>{this.props.concentration.title}</p>
+              <p><b>{this.props.concentration.code}</b> {this.props.concentration.title}</p>
+              <img src={closeIcon} onClick={this.handleRemove}/>
             </div>
             :
             <input type="text" value={this.state.concentrationInput} onChange={this.handleInput} placeholder="Type your concentration here..."/>
@@ -75,29 +81,37 @@ class UserInfo extends Component {
           }
 
         </div>
-        <p>Pathways</p>
-        <select>
-          <option value='Systems'>Systems</option>
-          <option value='Data'>Data</option>
-          <option value='Artificial Intelligence/Machine Learning'>Artificial Intelligence/Machine Learning</option>
-          <option value='Theory'>Theory</option>
-          <option value='Security'>Security</option>
-          <option value='Visual Computing'>Visual Computing</option>
-          <option value='Computer Architecture'>Computer Architecture</option>
-          <option value='Computational Biology'>Computational Biology</option>
-          <option value='Design'>Design</option>
-        </select>
-        <select>
-          <option value='Systems'>Systems</option>
-          <option value='Data'>Data</option>
-          <option value='Artificial Intelligence/Machine Learning'>Artificial Intelligence/Machine Learning</option>
-          <option value='Theory'>Theory</option>
-          <option value='Security'>Security</option>
-          <option value='Visual Computing'>Visual Computing</option>
-          <option value='Computer Architecture'>Computer Architecture</option>
-          <option value='Computational Biology'>Computational Biology</option>
-          <option value='Design'>Design</option>
-        </select>
+        {this.props.concentration ?
+          <div className='pathways'>
+            <p>Pathways</p>
+            <select>
+              <option selected="selected" value='Systems'>Systems</option>
+              <option value='Data'>Data</option>
+              <option value='Artificial Intelligence/Machine Learning'>Artificial Intelligence/Machine Learning</option>
+              <option value='Theory'>Theory</option>
+              <option value='Security'>Security</option>
+              <option value='Visual Computing'>Visual Computing</option>
+              <option value='Computer Architecture'>Computer Architecture</option>
+              <option value='Computational Biology'>Computational Biology</option>
+              <option value='Design'>Design</option>
+            </select>
+            <select>
+              <option value='Systems'>Systems</option>
+              <option selected="selected" value='Data'>Data</option>
+              <option value='Artificial Intelligence/Machine Learning'>Artificial Intelligence/Machine Learning</option>
+              <option value='Theory'>Theory</option>
+              <option value='Security'>Security</option>
+              <option value='Visual Computing'>Visual Computing</option>
+              <option value='Computer Architecture'>Computer Architecture</option>
+              <option value='Computational Biology'>Computational Biology</option>
+              <option value='Design'>Design</option>
+            </select>
+          </div>
+          :
+          null
+        }
+
+
         <button onClick={() => algorithm(
           this.props.courses,
           this.props.concentrations,
@@ -123,6 +137,7 @@ function mapDispatchToProps(dispatch) {
   return {
     handleSetYear: (year) => dispatch(setYear(year)),
     handleSetConcentration: (concentration) => dispatch(setConcentration(concentration)),
+    handleRemoveConcentration: () => dispatch(removeConcentration()),
     handleSetFirstPathway: (pathway) => dispatch(setFirstPathway(pathway)),
     handleSetSecondPathway: (pathway) => dispatch(setSecondPathway(pathway))
   }

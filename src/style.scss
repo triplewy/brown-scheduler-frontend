@@ -3,14 +3,14 @@
 
     .left-side {
         width: 50vw;
-        height: 100vh;
+        // height: 100vh;
         padding: 36px;
-        overflow-y: scroll;
+        // overflow-y: scroll;
     }
 
     .right-side {
         width: 50vw;
-        background-color: #3d3d3d;
+        background-color: #f1f1f1;
         padding: 36px;
 
         h1 {
@@ -20,7 +20,8 @@
 }
 
 .semester-course {
-    height: 35px;
+    display: flex;
+    height: 40px;
     border-radius: 2px;
     padding: 6px;
     color: white;
@@ -28,6 +29,8 @@
     position: relative;
 
     input {
+      flex: 1;
+        margin: auto 0;
         border: none;
         background-color: #f4f4f4;
         color: white;
@@ -61,10 +64,14 @@
         }
     }
 
-    // .selected-course p {
-    //     height: 22px;
-    //     overflow-x: scroll;
-    // }
+    .selected-course {
+      flex: 1;
+      display: flex;
+
+      div {
+        flex: 1;
+      }
+    }
 
 }
 
@@ -80,9 +87,10 @@
         .semester-course {
             margin-bottom: 3px;
             .selected-course>div {
+              margin: auto 0;
               display: flex;
               * {
-                margin: auto 0; 
+                margin: auto 0;
               }
               img {
                 margin-left: auto;
