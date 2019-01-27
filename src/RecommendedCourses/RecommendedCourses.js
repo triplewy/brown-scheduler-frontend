@@ -46,8 +46,12 @@ class RecommendedCourses extends Component {
         data={data}
         columns={columns}
         defaultPageSize={10}
+        className="-striped -highlight"
         SubComponent={row =>  {
-          return (<div>{row.row.title}</div>);
+          return (
+          <div>
+            Test.
+          </div>);
         }}
       />
     )
