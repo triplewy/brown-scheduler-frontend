@@ -1,10 +1,59 @@
 .AddCourses {
   margin: 0 auto;
   display: flex;
+  flex-direction: column;
 }
 
 .AddCourses input {
-  border-radius: 8px;
-  border: 1px solid #ccc;
+  width: 100%;
+  border: none;
   padding: 5px;
+}
+
+.AddCourses ul {
+  border-radius: 8px;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: white;
+}
+
+.AddCourses li {
+  padding: 10px;
+}
+
+.AddCourses div.selectedCourse {
+  border-radius: 8px;
+  padding: 10px;
+  background-color: white;
+}
+
+.AddCourses div.selectedCourse>div {
+  display: flex;
+}
+
+.AddCourses div.selectedCourse>div>p {
+  margin-right: 10px;
+}
+
+.AddCourses div.selectedCourse>div>p:first-child {
+  color: gray;
+}
+
+.AddCourses div.suggestions {
+  position: relative;
+  display: flex;
+}
+
+.AddCourses div.suggestions ul {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  box-shadow: 0 4px 2px 4px gray;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.AddCourses div.suggestions li:hover {
+  background-color: #ccc;
 }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Stitch, RemoteMongoClient, AnonymousCredential } from 'mongodb-stitch-browser-sdk'
-import SemesterCourse from './SemesterCourse.js'
+import SemesterCourse from '../SemesterCourse/SemesterCourse'
 
 class Semester extends Component {
   constructor(props) {
