@@ -42,7 +42,7 @@ class AddCourses extends Component {
     const filteredCourses = this.props.uniq_courses.filter(course =>
       (course.title.toLowerCase().search(e.target.value.toLowerCase()) > -1 ||
       course.code.toLowerCase().search(e.target.value.toLowerCase()) > -1) &&
-      this.props.addedCourses.indexOf(course) < 0
+      this.props.addedCourses.indexOf(course) < 0 && this.props.recCourses.indexOf(course.code) < 0
     )
     this.setState({ filteredCourses: filteredCourses, input: e.target.value, showSuggestions: e.target.value && filteredCourses.length })
   }
