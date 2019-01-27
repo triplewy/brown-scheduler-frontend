@@ -140,3 +140,25 @@
     flex-wrap: wrap;
     justify-content: space-between;
 }
+
+.recommended-courses {
+  >div {
+    display: flex;
+
+    button {
+      margin: auto 0;
+      margin-left: 20px;
+      border: none;
+      color: rgb(0, 122, 255);
+      font-weight: bold;
+      border-radius: 4px;
+      padding: 8px 20px;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    button:hover {
+      box-shadow: 0 0 0 2px rgb(0, 122, 255);
+    }
+  }
+}

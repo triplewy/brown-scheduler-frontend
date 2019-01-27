@@ -3,18 +3,38 @@ import { connect } from 'react-redux'
 import ReactTable from 'react-table'
 import 'react-table/react-table.css'
 import { Stitch, RemoteMongoClient, AnonymousCredential } from 'mongodb-stitch-browser-sdk'
+import '../style.scss'
 
 class RecommendedCourses extends Component {
   constructor(props) {
     super(props)
+
+    this.state = {
+      filter: false
+    }
+
     this.getCourses = this.getCourses.bind(this);
+    this.filterPathway = this.filterPathway.bind(this)
   }
 
   getRecommendations() {
-    const toRemove = this.props.recCourses.concat(this.props.addedCourses).map(d => d ? d.code ? d.code : d : null); // replace with list of courses already added
-    return this.props.uniq_courses.filter(function(d) {
-      return toRemove.indexOf(d.code) < 0;
-    });
+    if (this.state.filter) {
+      console.log(this.props.pathwayCourses);
+      return this.props.pathwayCourses
+    } else {
+      const courses = this.props.recCourses.concat(this.props.addedCourses)
+      const toRemove = courses.map(d => d ? d.code ? d.code : d : null); // replace with list of courses already added
+      return this.props.uniq_courses.filter(function(d) {
+        return toRemove.indexOf(d.code) < 0;
+      });
+    }
+  }
+
+  filterPathway() {
+    console.log('herere');
+    this.setState({ filter: !this.state.filter }, () => {
+      this.getCourses()
+    })
   }
 
   getCourses() {
@@ -61,8 +81,11 @@ class RecommendedCourses extends Component {
   render() {
     return (
       <div className="recommended-courses">
-      <h1>Browse Courses</h1>
-      {this.getCourses()}
+        <div>
+          <h1>Browse Courses</h1>
+          <button onClick={this.filterPathway}>Filter to my pathway</button>
+        </div>
+        {this.getCourses()}
       </div>
     );
   }

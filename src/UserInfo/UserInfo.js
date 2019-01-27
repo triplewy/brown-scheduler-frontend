@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Stitch, RemoteMongoClient, AnonymousCredential } from 'mongodb-stitch-browser-sdk'
 import { connect } from 'react-redux'
-import { setYear, setConcentration, removeConcentration, setFirstPathway, setSecondPathway, setRecCourses } from './UserInfo.operations'
+import { setYear, setConcentration, removeConcentration, setFirstPathway, setSecondPathway, setRecCourses, addPathwayCourses } from './UserInfo.operations'
 import { algorithm } from '../algorithm'
 import closeIcon from '../Icons/close-icon.png'
 import './UserInfo.css'
@@ -62,8 +62,14 @@ class UserInfo extends Component {
       this.props.addedCourses
     )
 
-    console.log(recCourses);
     this.props.handleSetRecCourses(recCourses.semesters)
+    var pathwayCourses = []
+    for (var pathway in recCourses.related_untaken) {
+      pathwayCourses = pathwayCourses.concat(recCourses.related_untaken[pathway])
+    }
+    this.props.handleAddPathwayCourses(pathwayCourses.map(item => {
+      return this.props.courses[this.props.courses.findIndex(course => course.code == item)]
+    }))
   }
 
 
@@ -130,7 +136,7 @@ class UserInfo extends Component {
         }
 
 
-        <button onClick={this.handleAlgorithm}>Generate Schedule</button>
+        <button onClick={this.handleAlgorithm} disabled={!this.props.concentration}>Generate Schedule</button>
       </div>
     );
   }
@@ -151,7 +157,8 @@ function mapDispatchToProps(dispatch) {
     handleRemoveConcentration: () => dispatch(removeConcentration()),
     handleSetFirstPathway: (pathway) => dispatch(setFirstPathway(pathway)),
     handleSetSecondPathway: (pathway) => dispatch(setSecondPathway(pathway)),
-    handleSetRecCourses: (courses) => dispatch(setRecCourses(courses))
+    handleSetRecCourses: (courses) => dispatch(setRecCourses(courses)),
+    handleAddPathwayCourses: (courses) => dispatch(addPathwayCourses(courses))
   }
 }
 

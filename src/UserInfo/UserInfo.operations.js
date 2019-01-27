@@ -1,5 +1,5 @@
 import { setYearAction, setConcentrationAction, removeConcentrationAction, setFirstPathwayAction, setSecondPathwayAction } from './UserInfo.actions'
-import { addRecCoursesAction } from '../AddCourses/AddCourses.actions'
+import { addRecCoursesAction, addPathwayCoursesAction } from '../AddCourses/AddCourses.actions'
 
 export function setYear(year) {
   return (dispatch) => {
@@ -33,5 +33,11 @@ export function setSecondPathway(pathway) {
 export function setRecCourses(courses) {
   return (dispatch) => {
     dispatch(addRecCoursesAction(courses))
+  }
+}
+
+export function addPathwayCourses(courses) {
+  return (dispatch) => {
+    dispatch(addPathwayCoursesAction(courses))
   }
 }
